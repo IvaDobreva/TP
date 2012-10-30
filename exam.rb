@@ -12,7 +12,7 @@ x = 0
 CSV.open(output_name, "w") do |csv|
 	CSV.foreach(input_name) do |row|
 		value = row[0]
-		if value != "" && x<=10
+		if value != "" && x<10
 			value = value.to_f
 			sum+= value
 			x+=1
