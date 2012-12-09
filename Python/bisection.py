@@ -1,18 +1,19 @@
 balance = 320000
 annualInterestRate = 0.2
 
-monthlyIntRate = annualInterestRate/12
-low = balance/12
-low1 = low
-high = (balance*(1+monthlyIntRate)**12)/12
-epsilon = 0.1
-month = 1
-ans = round((high + low)/2, 2)
-while month <=11:
-	if ans<high:
-		high=ans
-	else:
-		low = ans
-	month += 1
-ubalance = (ans - monthlyIntRate)
-print(str(round(ubalance, 2)))
+monthintrate=annualInterestRate/12
+monthlowb=balance/12
+monthhighb=(balance*((1+monthintrate)**12))/12
+while balance>0:    
+    balance1=balance
+    paymentpermonth=(monthlowb+monthhighb)/2
+    for month in range(1, 13):        
+        updbalance=(balance1-paymentpermonth)*(1+monthintrate)
+        balance1=updbalance
+    if balance1>0.01:
+        monthlowb=paymentpermonth
+    elif balance1<-0.01:
+        monthhighb=paymentpermonth
+    else:
+        break
+print('Lowest payment: ' + str(round(paymentpermonth, 2)))
