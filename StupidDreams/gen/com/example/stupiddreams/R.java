@@ -21,7 +21,8 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int collage_theme=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
         public static final int pager=0x7f080000;
@@ -29,6 +30,7 @@ public final class R {
     public static final class layout {
         public static final int activity_stupid_dreams=0x7f030000;
         public static final int fragment_stupid_dreams_news=0x7f030001;
+        public static final int start_up=0x7f030002;
     }
     public static final class menu {
         public static final int stupid_dreams=0x7f070000;
