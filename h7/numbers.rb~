@@ -1,0 +1,72 @@
+require 'csv'
+
+def most_common_value(a)
+  	a.group_by do |e|
+    		e
+  	end.values.max_by(&:size).first
+end
+
+def most_rare_value(a)
+  	a.group_by do |e|
+    		e
+  	end.values.max_by(&:size).last
+end
+
+
+def csv_files
+	array = Array.new(29)
+	pass = Array.new
+	count = Array.new(29)
+	i =0
+	for i in 0..29 
+		count[i]=0
+	end
+
+	for i in 0..29
+		array[i]=0
+	end
+
+	for i in 0..29 
+		pass[i]= ""
+	end
+
+	input_files = Dir.glob("*.csv")
+	input_files.each do |filename|
+		c = false
+		index = 0
+		CSV.foreach(filename) do |row|
+			if c == true
+				pass[index-1] = pass[index-1]+" "+row[0]+" "
+			end
+			index = row[0].to_i
+			array[index-1]+=1
+			c = true
+		end
+		
+	end
+	for i in 0..pass.index(pass.last) 
+			count = pass[i].split(/ /)
+			print "Number ", i+1, " passed to ", most_common_value(count), "\n";
+			print "Number ", most_common_value(count), " recieved from ", i+1, "\n";	
+			
+	end
+
+	for i in 0..29
+			count = pass[i].split(/ /)
+			print "Number ", i+1, " passed rarely to ", most_rare_value(count), "\n";
+			print "Number ", most_rare_value(count), " recieved rarely from ", i+1, "\n";
+	end
+
+	for i in 0..29 
+		if array[i] == array.max
+			print "Most popular number is ", i+1, " - ", array[i], "\n";
+		end
+		if array[i] == array.min
+			print "Most UNpopular number is ", i+1, " - ", array[i], "\n";
+		end
+	end
+
+end
+
+csv_files
+
